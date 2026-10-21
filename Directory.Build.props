@@ -1,0 +1,11 @@
+<Project>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ProjectName>HomeNet</ProjectName>
+		<Authors>Lappriou</Authors>
+		<RootNamespace>$(ProjectName).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+		<AssemblyName>$(ProjectName).$(MSBuildProjectName)</AssemblyName>
+	</PropertyGroup>
+</Project>
