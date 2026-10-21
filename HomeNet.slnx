@@ -1,2 +1,6 @@
 <Solution>
+  <Folder Name="/Applications/">
+    <Project Path="sources/applications/Applications.BlazorApp/Applications.BlazorApp.Client/Applications.BlazorApp.Client.csproj" Id="af732598-62ee-4774-83c8-4e63694d31d5" />
+    <Project Path="sources/applications/Applications.BlazorApp/Applications.BlazorApp/Applications.BlazorApp.csproj" Id="4de9fef1-a91d-4a0a-a442-1ad4a67c4a8c" />
+  </Folder>
 </Solution>
