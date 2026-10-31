@@ -8,10 +8,19 @@ public class DeviceManager
     {
         var devices = new List<Device>
         {
-            new Device
-            {
-                Name = "Temperature sensor",
-                States = new List<State>
+            BuildDeviceSensorTemperature("Temperature sensor 1"),
+            BuildDeviceLight("Light 1"),
+        };
+        Devices = devices;
+    }
+    public IReadOnlyCollection<Device> Devices { get; private set; } = new List<Device>();
+
+    private Device BuildDeviceSensorTemperature(string name)
+    {
+        return new Device
+        {
+            Name = "Temperature sensor",
+            States = new List<State>
                 {
                     new State
                     {
@@ -20,11 +29,15 @@ public class DeviceManager
                             .Select(_ => $"{new Random().NextInt64(19, 24)}°C")
                     },
                 }
-            },
-            new Device
-            {
-                Name = "Light",
-                States = new List<State>
+        };
+    }
+
+    private Device BuildDeviceLight(string name)
+    {
+        return new Device
+        {
+            Name = "Light",
+            States = new List<State>
                 {
                     new State
                     {
@@ -33,9 +46,6 @@ public class DeviceManager
                             .Select(_ => new Random().NextInt64(0,2) == 1 ? "On" : "Off")
                     },
                 }
-            },
         };
-        Devices = devices;
     }
-    public IReadOnlyCollection<Device> Devices { get; private set; } = new List<Device>();
 }
