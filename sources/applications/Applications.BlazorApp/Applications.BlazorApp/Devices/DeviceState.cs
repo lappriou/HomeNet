@@ -3,7 +3,7 @@ using System.Reactive.Subjects;
 
 namespace HomeNet.Applications.BlazorApp.Devices;
 
-public class State : IDisposable
+public class DeviceState : IDisposable
 {
     public required string Name { get; set; }
 

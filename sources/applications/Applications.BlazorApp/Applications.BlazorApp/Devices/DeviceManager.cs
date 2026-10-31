@@ -20,9 +20,9 @@ public class DeviceManager
         return new Device
         {
             Name = "Temperature sensor",
-            States = new List<State>
+            States = new List<DeviceState>
                 {
-                    new StateBuilder()
+                    new DeviceStateBuilder()
                     .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(1))
                             .Select(_ => $"{new Random().NextInt64(19, 24)}°C"))
                     .Build("Temperature")
@@ -35,9 +35,9 @@ public class DeviceManager
         return new Device
         {
             Name = name,
-            States = new List<State>
+            States = new List<DeviceState>
                 {
-                    new StateBuilder()
+                    new DeviceStateBuilder()
                         .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(1))
                                 .Select(_ => new Random().NextInt64(0,2) == 1 ? "On" : "Off"))
                         .Build(name: "On/Off"),

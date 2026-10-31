@@ -9,9 +9,9 @@
 {
     <h2>@device.Name</h2>
     <ul>
-        @foreach (var state in device.States ?? Array.Empty<State>())
+        @foreach (var state in device.States ?? Array.Empty<DeviceState>())
         {
-            <HomeNet.Applications.BlazorApp.Components.Devices.StateComponent State="@state" />
+            <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
         }
     </ul>
 }

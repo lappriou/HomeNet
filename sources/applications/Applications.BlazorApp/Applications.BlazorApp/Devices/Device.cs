@@ -3,5 +3,5 @@
 public sealed class Device
 {
     public required string Name { get; set; }
-    public IReadOnlyCollection<State>? States { get; set; }
+    public IReadOnlyCollection<DeviceState>? States { get; set; }
 }
