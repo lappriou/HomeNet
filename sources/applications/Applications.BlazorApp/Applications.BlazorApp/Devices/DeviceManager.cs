@@ -22,11 +22,10 @@ public class DeviceManager
             Name = "Temperature sensor",
             States = new List<State>
                 {
-                    new StateBuilder().Build(
-                        name: "Temperature",
-                        valueObservable: Observable.Interval(TimeSpan.FromSeconds(1))
-                            .Select(_ => $"{new Random().NextInt64(19, 24)}°C")
-                    )
+                    new StateBuilder()
+                    .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(1))
+                            .Select(_ => $"{new Random().NextInt64(19, 24)}°C"))
+                    .Build("Temperature")
                 }
         };
     }
@@ -35,14 +34,13 @@ public class DeviceManager
     {
         return new Device
         {
-            Name = "Light",
+            Name = name,
             States = new List<State>
                 {
-                    new StateBuilder().Build(
-                        name: "On/Off",
-                        valueObservable: Observable.Interval(TimeSpan.FromSeconds(1))
-                            .Select(_ => new Random().NextInt64(0,2) == 1 ? "On" : "Off")
-                    ),
+                    new StateBuilder()
+                        .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(1))
+                                .Select(_ => new Random().NextInt64(0,2) == 1 ? "On" : "Off"))
+                        .Build(name: "On/Off"),
                 }
         };
     }
