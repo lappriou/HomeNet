@@ -1,0 +1,26 @@
+﻿@rendermode InteractiveServer
+@implements IDisposable
+<li>@State.Name: @Value</li>
+
+@code {
+    [Parameter]
+    public State State { get; set; } = default!;
+
+    private object? Value { get; set; }
+    private IDisposable? _subscription;
+
+    protected override void OnInitialized()
+    {
+        _subscription = State.GetValueObservable()
+            .Subscribe(value =>
+            {
+                Value = value;
+                InvokeAsync(StateHasChanged);
+            });
+    }
+
+    public void Dispose()
+    {
+        _subscription?.Dispose();
+    }
+}

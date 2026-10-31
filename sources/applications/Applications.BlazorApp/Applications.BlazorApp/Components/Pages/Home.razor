@@ -1,20 +1,22 @@
 ﻿@page "/"
 @inject DeviceManager DeviceManager
-
+@rendermode InteractiveServer
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-@foreach(var device in DeviceManager.Devices)
+@foreach (var device in DeviceManager.Devices)
 {
-        <h2>@device.Name</h2>
-        <ul>
-            @foreach (var state in device.States ?? Array.Empty<State>())
-            {
-                <li>@state.Name: @state.GetValue()</li>
-            }
-        </ul>
-    }
+    <h2>@device.Name</h2>
+    <ul>
+        @foreach (var state in device.States ?? Array.Empty<State>())
+        {
+            <HomeNet.Applications.BlazorApp.Components.Devices.StateComponent State="@state" />
+        }
+    </ul>
 }
 
+
+@code {
+}
 

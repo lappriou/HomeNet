@@ -1,4 +1,6 @@
-﻿namespace HomeNet.Applications.BlazorApp.Devices;
+﻿using System.Reactive.Linq;
+
+namespace HomeNet.Applications.BlazorApp.Devices;
 
 public class DeviceManager
 {
@@ -14,7 +16,8 @@ public class DeviceManager
                     new State
                     {
                         Name = "Temperature",
-                        GetValue = () => "25.0 °C"
+                        GetValueObservable = () => Observable.Interval(TimeSpan.FromSeconds(1))
+                            .Select(_ => (object)$"{new Random().NextInt64(19, 24)}°C")
                     },
                 }
             },

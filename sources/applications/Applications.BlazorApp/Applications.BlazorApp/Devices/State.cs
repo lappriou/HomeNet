@@ -4,7 +4,7 @@ public class State
 {
     public required string Name { get; set; }
 
-    public required Func<object> GetValue { get; init; }
+    public required Func<IObservable<object>> GetValueObservable { get; init; }
 
     public object? Value { get; private set; }
 }
