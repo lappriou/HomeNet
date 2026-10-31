@@ -1,7 +1,20 @@
 ﻿@page "/"
+@inject DeviceManager DeviceManager
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+@foreach(var device in DeviceManager.Devices)
+{
+        <h2>@device.Name</h2>
+        <ul>
+            @foreach (var state in device.States ?? Array.Empty<State>())
+            {
+                <li>@state.Name: @state.GetValue()</li>
+            }
+        </ul>
+    }
+}
+
+

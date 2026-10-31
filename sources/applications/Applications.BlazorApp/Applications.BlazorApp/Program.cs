@@ -1,11 +1,11 @@
-using HomeNet.Applications.BlazorApp.Components;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddSingleton<DeviceManager>();
 
 var app = builder.Build();
 
