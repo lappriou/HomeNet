@@ -11,7 +11,7 @@
 
     protected override void OnInitialized()
     {
-        _subscription = State.GetValueObservable()
+        _subscription = State.ValueObservable
             .Subscribe(value =>
             {
                 Value = value;
