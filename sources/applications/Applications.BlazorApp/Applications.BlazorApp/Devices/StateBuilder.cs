@@ -4,10 +4,12 @@ public sealed class StateBuilder
 {
     public State Build(string name, IObservable<object> valueObservable)
     {
-        return new State
+        var state = new State
         {
             Name = name,
-            ValueObservable = valueObservable
         };
+
+        valueObservable.Subscribe(state.ValueSubject);
+        return state;
     }
 }

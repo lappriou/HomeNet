@@ -1,10 +1,17 @@
-﻿namespace HomeNet.Applications.BlazorApp.Devices;
+﻿using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
-public class State
+namespace HomeNet.Applications.BlazorApp.Devices;
+
+public class State : IDisposable
 {
     public required string Name { get; set; }
 
-    public required IObservable<object> ValueObservable { get; init; }
+    public Subject<object> ValueSubject { get; } = new Subject<object>();
+    public IObservable<object> ValueObservable => ValueSubject.AsObservable();
 
-    public object? Value { get; private set; }
+    public void Dispose()
+    {
+        ValueSubject.Dispose();
+    }
 }
