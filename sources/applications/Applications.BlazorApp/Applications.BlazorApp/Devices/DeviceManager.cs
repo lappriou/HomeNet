@@ -17,7 +17,20 @@ public class DeviceManager
                     {
                         Name = "Temperature",
                         GetValueObservable = () => Observable.Interval(TimeSpan.FromSeconds(1))
-                            .Select(_ => (object)$"{new Random().NextInt64(19, 24)}°C")
+                            .Select(_ => $"{new Random().NextInt64(19, 24)}°C")
+                    },
+                }
+            },
+            new Device
+            {
+                Name = "Light",
+                States = new List<State>
+                {
+                    new State
+                    {
+                        Name = "On/Off",
+                        GetValueObservable = () => Observable.Interval(TimeSpan.FromSeconds(1))
+                            .Select(_ => new Random().NextInt64(0,2) == 1 ? "On" : "Off")
                     },
                 }
             },
