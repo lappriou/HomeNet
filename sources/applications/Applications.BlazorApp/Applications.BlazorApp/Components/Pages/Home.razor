@@ -14,6 +14,11 @@
             <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
         }
     </ul>
+
+    @foreach (var action in device.Actions ?? Array.Empty<DeviceAction>())
+    {
+        <HomeNet.Applications.BlazorApp.Components.Devices.DeviceActionComponent Action="@action" />
+    }
 }
 
 

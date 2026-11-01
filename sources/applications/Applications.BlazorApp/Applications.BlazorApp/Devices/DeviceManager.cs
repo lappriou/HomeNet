@@ -32,16 +32,39 @@ public class DeviceManager
 
     private Device BuildDeviceLight(string name)
     {
-        return new Device
+        var device = new Device
         {
             Name = name,
             States = new List<DeviceState>
                 {
                     new DeviceStateBuilder()
-                        .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(1))
-                                .Select(_ => new Random().NextInt64(0,2) == 1 ? "On" : "Off"))
                         .Build(name: "On/Off"),
                 }
         };
+
+        device.Actions = new List<DeviceAction>
+        {
+            
+            new DeviceAction
+            {
+                Name = "Turn On",
+                Device = device,
+                Action = (device) => 
+                {
+                    device.States?.FirstOrDefault(x => x.Name == "On/Off")?.ValueSubject.OnNext("On");
+                }
+            },
+            new DeviceAction
+            {
+                Name = "Turn Off",
+                Device = device,
+                Action = (device) =>
+                {
+                    device.States?.FirstOrDefault(x => x.Name == "On/Off")?.ValueSubject.OnNext("Off");
+                }
+            }
+        };
+
+        return device;
     }
 }
