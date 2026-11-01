@@ -38,6 +38,7 @@ public class DeviceManager
             States = new List<DeviceState>
                 {
                     new DeviceStateBuilder()
+                        .WithValueDefault("Off")
                         .Build(name: "On/Off"),
                 }
         };
@@ -49,9 +50,13 @@ public class DeviceManager
             {
                 Name = "Turn On",
                 Device = device,
-                Action = (device) => 
+                Action = (device) =>
                 {
-                    device.States?.FirstOrDefault(x => x.Name == "On/Off")?.ValueSubject.OnNext("On");
+                    var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
+                    if (state != null)
+                    {
+                        state.Value = "On";
+                    }
                 }
             },
             new DeviceAction
@@ -60,7 +65,11 @@ public class DeviceManager
                 Device = device,
                 Action = (device) =>
                 {
-                    device.States?.FirstOrDefault(x => x.Name == "On/Off")?.ValueSubject.OnNext("Off");
+                    var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
+                    if (state != null)
+                    {
+                        state.Value = "Off";
+                    }
                 }
             }
         };

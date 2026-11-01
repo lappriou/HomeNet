@@ -2,11 +2,19 @@
 
 public sealed class DeviceStateBuilder
 {
-    private IObservable<object>? ValueObservable{ get; set; }
+    private IObservable<object?>? ValueObservable { get; set; }
 
-    public DeviceStateBuilder WithValueObservable(IObservable<object> valueObservable)
+    public object? ValueDefault { get; set; }
+
+    public DeviceStateBuilder WithValueObservable(IObservable<object?> valueObservable)
     {
         ValueObservable = valueObservable;
+        return this;
+    }
+
+    public DeviceStateBuilder WithValueDefault(object valueDefault)
+    {
+        ValueDefault = valueDefault;
         return this;
     }
 
@@ -17,7 +25,16 @@ public sealed class DeviceStateBuilder
             Name = name,
         };
 
-        ValueObservable?.Subscribe(state.ValueSubject);
+        if (ValueDefault != null)
+        {
+            state.Value = ValueDefault;
+        }
+
+        if (ValueObservable != null)
+        {
+            state.SubscribeToValue(ValueObservable);
+        }
+
         return state;
     }
 }
