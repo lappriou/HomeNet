@@ -4,6 +4,7 @@
     <Project Path="sources/applications/Applications.BlazorApp/Applications.BlazorApp/Applications.BlazorApp.csproj" Id="4de9fef1-a91d-4a0a-a442-1ad4a67c4a8c" />
   </Folder>
   <Folder Name="/Aspire/">
+    <Project Path="AspireAppHost/AspireAppHost.csproj" Id="5e36de86-ebcf-4a78-80c9-f5bd1990c4ec" />
     <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" Id="7906bb71-c385-4946-94f6-f3df4a908d74" />
   </Folder>
 </Solution>
