@@ -23,10 +23,11 @@ public class DeviceManager
             States = new List<DeviceState>
                 {
                     new DeviceStateBuilder()
-                    .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(1))
+                    .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(20))
                             .Select(_ => $"{new Random().NextInt64(19, 24)}°C"))
+                    .WithValueDefault("20°C")
                     .Build("Temperature")
-                }
+                },
         };
     }
 
