@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MudBlazor" Version="9.12.0" />
     <ProjectReference Include="..\..\..\..\AspireServiceDefaults\AspireServiceDefaults.csproj" />
     <ProjectReference Include="..\Applications.BlazorApp.Client\Applications.BlazorApp.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.14" />

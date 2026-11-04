@@ -7,18 +7,23 @@
 
 @foreach (var device in DeviceManager.Devices)
 {
-    <h2>@device.Name</h2>
-    <ul>
-        @foreach (var state in device.States ?? Array.Empty<DeviceState>())
-        {
-            <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
-        }
-    </ul>
-
-    @foreach (var action in device.Actions ?? Array.Empty<DeviceAction>())
-    {
-        <HomeNet.Applications.BlazorApp.Components.Devices.DeviceActionComponent Action="@action" />
-    }
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h1">@device.Name</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            @foreach (var state in device.States ?? Array.Empty<DeviceState>())
+            {
+                <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
+            }
+        </MudCardContent>
+        <MudCardActions>
+            @foreach (var action in device.Actions ?? Array.Empty<DeviceAction>())
+            {
+                <HomeNet.Applications.BlazorApp.Components.Devices.DeviceActionComponent Action="@action" />
+            }
+        </MudCardActions>
+    </MudCard>
 }
 
 
