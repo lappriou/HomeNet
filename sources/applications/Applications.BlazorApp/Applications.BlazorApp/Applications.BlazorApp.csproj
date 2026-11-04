@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\AspireServiceDefaults\AspireServiceDefaults.csproj" />
     <ProjectReference Include="..\Applications.BlazorApp.Client\Applications.BlazorApp.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.14" />
     <PackageReference Include="System.Reactive" Version="7.0.0" />
   </ItemGroup>
 
