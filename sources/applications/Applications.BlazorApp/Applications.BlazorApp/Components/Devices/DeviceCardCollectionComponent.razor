@@ -1,0 +1,6 @@
+﻿@inject DeviceManager DeviceManager
+
+@foreach (var device in DeviceManager.Devices)
+{
+    <DeviceCardComponent Device="@device" />
+}
