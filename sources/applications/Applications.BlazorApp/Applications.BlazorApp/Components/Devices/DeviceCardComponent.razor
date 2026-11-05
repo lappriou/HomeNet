@@ -1,0 +1,17 @@
+﻿<MudCard>
+    <MudCardHeader>
+        <MudText Typo="Typo.h1">@Device.Name</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        @foreach (var state in Device.States ?? Array.Empty<DeviceState>())
+        {
+            <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
+        }
+    </MudCardContent>
+    <MudCardActions>
+        @foreach (var action in Device.Actions ?? Array.Empty<DeviceAction>())
+        {
+            <HomeNet.Applications.BlazorApp.Components.Devices.DeviceActionComponent Action="@action" />
+        }
+    </MudCardActions>
+</MudCard>
