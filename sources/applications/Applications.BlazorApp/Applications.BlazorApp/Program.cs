@@ -1,4 +1,5 @@
 using HomeNet.AspireServiceDefaults;
+using HomeNet.Cores.Devices;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

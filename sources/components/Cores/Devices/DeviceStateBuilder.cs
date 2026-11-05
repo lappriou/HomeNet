@@ -1,4 +1,4 @@
-﻿namespace HomeNet.Applications.BlazorApp.Devices;
+﻿namespace HomeNet.Cores.Devices;
 
 public sealed class DeviceStateBuilder
 {

@@ -2,7 +2,7 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
-namespace HomeNet.Applications.BlazorApp.Devices;
+namespace HomeNet.Cores.Devices;
 
 public class DeviceState : IDisposable
 {

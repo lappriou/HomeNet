@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using HomeNet.Cores.Devices;
+
+using Microsoft.AspNetCore.Components;
 
 namespace HomeNet.Applications.BlazorApp.Components.Devices;
 

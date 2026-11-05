@@ -7,4 +7,5 @@
     <Project Path="AspireAppHost/AspireAppHost.csproj" Id="5e36de86-ebcf-4a78-80c9-f5bd1990c4ec" />
     <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" Id="7906bb71-c385-4946-94f6-f3df4a908d74" />
   </Folder>
+  <Project Path="sources/components/Cores/Cores.csproj" Id="15aa7a8f-3c1a-462e-b0d0-8198b45069c5" />
 </Solution>

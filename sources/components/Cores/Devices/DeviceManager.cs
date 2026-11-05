@@ -1,6 +1,6 @@
 ﻿using System.Reactive.Linq;
 
-namespace HomeNet.Applications.BlazorApp.Devices;
+namespace HomeNet.Cores.Devices;
 
 public class DeviceManager
 {
@@ -46,7 +46,7 @@ public class DeviceManager
 
         device.Actions = new List<DeviceAction>
         {
-            
+
             new DeviceAction
             {
                 Name = "Turn On",
