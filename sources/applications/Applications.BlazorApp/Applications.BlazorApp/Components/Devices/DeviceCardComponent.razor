@@ -1,14 +1,23 @@
-﻿<MudCard>
-    <MudCardHeader>
-        <MudText Typo="Typo.h1">@Device.Name</MudText>
+﻿<MudCard Class="device-card" Elevation="0">
+    <MudCardHeader Class="device-card-header">
+        <MudAvatar Class="device-icon" Size="Size.Medium">
+            <MudIcon Icon="@Icons.Material.Filled.DevicesOther" />
+        </MudAvatar>
+        <div class="device-card-heading">
+            <MudText Typo="Typo.subtitle1" Class="device-name">@Device.Name</MudText>
+            <MudText Typo="Typo.caption" Class="device-type">APPAREIL</MudText>
+        </div>
     </MudCardHeader>
-    <MudCardContent>
+    <MudCardContent Class="device-card-content">
         @foreach (var state in Device.States ?? Array.Empty<DeviceState>())
         {
-            <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
+            <div class="device-state">
+                <span class="device-state-name">@state.Name</span>
+                <HomeNet.Applications.BlazorApp.Components.Devices.DeviceStateComponent State="@state" />
+            </div>
         }
     </MudCardContent>
-    <MudCardActions>
+    <MudCardActions Class="device-card-actions">
         @foreach (var action in Device.Actions ?? Array.Empty<IDeviceAction>())
         {
             <HomeNet.Applications.BlazorApp.Components.Devices.DeviceActionComponent Action="@action" />

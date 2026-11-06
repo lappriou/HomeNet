@@ -1,8 +1,32 @@
 ﻿@page "/"
 @rendermode InteractiveServer
-<PageTitle>Home</PageTitle>
+@inject DeviceManager DeviceManager
 
-<h1>Hello, world!</h1>
+<PageTitle>HomeNet | Tableau de bord</PageTitle>
 
-<DeviceCardCollectionComponent/>
+<div class="dashboard-page">
+    <section class="welcome-panel" aria-labelledby="welcome-title">
+        <div class="welcome-copy">
+            <p class="eyebrow">MAISON CONNECTÉE</p>
+            <h1 id="welcome-title">Tout votre chez-vous,<br /><span>à portée de main.</span></h1>
+            <p class="welcome-description">Retrouvez vos appareils et leurs informations au même endroit.</p>
+            <div class="quick-summary">
+                <span class="summary-icon"><MudIcon Icon="@Icons.Material.Filled.DevicesOther" /></span>
+                <span class="summary-copy">
+                    <strong>@DeviceManager.Devices.Count appareil@(DeviceManager.Devices.Count == 1 ? "" : "s")</strong>
+                    <span>dans votre espace</span>
+                </span>
+            </div>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+            <div class="art-orbit orbit-outer"></div>
+            <div class="art-orbit orbit-inner"></div>
+            <div class="art-home"><MudIcon Icon="@Icons.Material.Filled.Home" /></div>
+            <span class="art-sparkle sparkle-one">✦</span>
+            <span class="art-sparkle sparkle-two">✦</span>
+        </div>
+    </section>
+
+    <DeviceCardCollectionComponent />
+</div>
 

@@ -2,10 +2,27 @@
 
 <MudThemeProvider />
 <MudPopoverProvider />
-@Body
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand" href="/" aria-label="HomeNet - accueil">
+            <span class="brand-mark"><MudIcon Icon="@Icons.Material.Filled.Home" /></span>
+            <span>Home<span class="brand-accent">Net</span></span>
+        </a>
+        <span class="topbar-caption">MAISON CONNECTÉE</span>
+    </header>
+
+    <main class="main-content">
+        @Body
+    </main>
+
+    <footer class="app-footer">
+        <span>HomeNet</span>
+        <span>Votre maison, simplement.</span>
+    </footer>
+</div>
 
 <div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+    Une erreur inattendue s’est produite.
+    <a href="." class="reload">Recharger</a>
+    <span class="dismiss">✕</span>
 </div>
