@@ -4,5 +4,5 @@ public sealed class Device
 {
     public required string Name { get; set; }
     public IReadOnlyCollection<DeviceState>? States { get; set; }
-    public IReadOnlyCollection<DeviceAction>? Actions { get; set; }
+    public IReadOnlyCollection<IDeviceAction>? Actions { get; set; }
 }

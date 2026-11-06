@@ -32,6 +32,9 @@ public class DeviceManager
             .WithState(new DeviceStateBuilder()
                 .WithValueDefault("Off")
                 .Build(name: "On/Off"))
+            .WithState(new DeviceStateBuilder()
+                .WithValueDefault("0%")
+                .Build(name: "Brightness"))
             .WithAction("Turn On", (device) =>
             {
                 var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
@@ -46,6 +49,19 @@ public class DeviceManager
                 if (state != null)
                 {
                     state.Value = "Off";
+                }
+            })
+            .WithAction<SetBrightnessParameters>("Set brightness", (device, parameters) =>
+            {
+                if (parameters.Percentage is < 0 or > 100)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(parameters), "Brightness must be between 0 and 100.");
+                }
+
+                var state = device.States?.FirstOrDefault(x => x.Name == "Brightness");
+                if (state != null)
+                {
+                    state.Value = $"{parameters.Percentage}%";
                 }
             })
             .Build();

@@ -9,7 +9,7 @@
         }
     </MudCardContent>
     <MudCardActions>
-        @foreach (var action in Device.Actions ?? Array.Empty<DeviceAction>())
+        @foreach (var action in Device.Actions ?? Array.Empty<IDeviceAction>())
         {
             <HomeNet.Applications.BlazorApp.Components.Devices.DeviceActionComponent Action="@action" />
         }

@@ -5,7 +5,8 @@ internal class DeviceBuilder
     private Device Device { get; set; }
 
     private List<DeviceState> States { get; set; } = new List<DeviceState>();
-    private List<DeviceAction> Actions { get; set; } = new List<DeviceAction>();
+    private List<IDeviceAction> Actions { get; set; } = new List<IDeviceAction>();
+
     public DeviceBuilder(string name)
     {
         Device = new Device
@@ -22,12 +23,35 @@ internal class DeviceBuilder
 
     public DeviceBuilder WithAction(string name, Action<Device> action)
     {
-        Actions.Add(new DeviceAction
+        ArgumentNullException.ThrowIfNull(action);
+        return WithAction(name, device =>
         {
-            Name = name,
-            Device = Device,
-            Action = action
+            action(device);
+            return Task.CompletedTask;
         });
+    }
+
+    public DeviceBuilder WithAction(string name, Func<Device, Task> action)
+    {
+        ArgumentNullException.ThrowIfNull(action);
+        Actions.Add(DeviceAction<object?>.WithoutParameters(name, Device, action));
+        return this;
+    }
+
+    public DeviceBuilder WithAction<TParameters>(string name, Action<Device, TParameters> action)
+    {
+        ArgumentNullException.ThrowIfNull(action);
+        return WithAction<TParameters>(name, (device, parameters) =>
+        {
+            action(device, parameters);
+            return Task.CompletedTask;
+        });
+    }
+
+    public DeviceBuilder WithAction<TParameters>(string name, Func<Device, TParameters, Task> action)
+    {
+        ArgumentNullException.ThrowIfNull(action);
+        Actions.Add(new DeviceAction<TParameters>(name, Device, action));
         return this;
     }
 

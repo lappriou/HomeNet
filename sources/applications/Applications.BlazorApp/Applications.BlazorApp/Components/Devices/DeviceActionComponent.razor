@@ -1,1 +1,36 @@
-﻿<MudButton Variant="Variant.Filled" OnClick="() => Action.Action.Invoke(Action.Device)">@Action.Name</MudButton>
+﻿@if (!Action.RequiresParameters)
+{
+    <MudButton Variant="Variant.Filled" OnClick="ExecuteAsync">@Action.Name</MudButton>
+}
+else if (Parameters is null)
+{
+    <MudAlert Severity="Severity.Error">@(FormError ?? "Impossible de créer le formulaire pour cette action.")</MudAlert>
+}
+else
+{
+    <MudStack Spacing="2">
+        @if (FormError is not null)
+        {
+            <MudAlert Severity="Severity.Error">@FormError</MudAlert>
+        }
+        @foreach (var property in ParameterProperties)
+        {
+            <div>
+                <label for="@GetInputId(property)">@GetDisplayName(property)</label>
+                @if (IsBoolean(property))
+                {
+                    <input id="@GetInputId(property)" type="checkbox" checked="@GetBooleanValue(property)" @onchange="args => UpdateParameter(property, args)" />
+                }
+                else
+                {
+                    <input id="@GetInputId(property)" type="@GetInputType(property)" value="@GetStringValue(property)" @onchange="args => UpdateParameter(property, args)" />
+                }
+                @if (ValidationErrors.TryGetValue(property.Name, out var error))
+                {
+                    <div class="mud-input-helper-text mud-input-error">@error</div>
+                }
+            </div>
+        }
+        <MudButton Variant="Variant.Filled" OnClick="ExecuteAsync" Disabled="@(FormError is not null)">@Action.Name</MudButton>
+    </MudStack>
+}
