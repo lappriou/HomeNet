@@ -17,64 +17,37 @@ public class DeviceManager
 
     private Device BuildDeviceSensorTemperature(string name)
     {
-        return new Device
-        {
-            Name = "Temperature sensor",
-            States = new List<DeviceState>
-                {
-                    new DeviceStateBuilder()
-                    .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(20))
-                            .Select(_ => $"{new Random().NextInt64(19, 24)}°C"))
-                    .WithValueDefault("20°C")
-                    .Build("Temperature")
-                },
-        };
+        return new DeviceBuilder(name)
+            .WithState(new DeviceStateBuilder()
+                .WithValueObservable(Observable.Interval(TimeSpan.FromSeconds(20))
+                    .Select(_ => $"{new Random().NextInt64(19, 24)}°C"))
+                .WithValueDefault("20°C")
+                .Build("Temperature"))
+            .Build();
     }
 
     private Device BuildDeviceLight(string name)
     {
-        var device = new Device
-        {
-            Name = name,
-            States = new List<DeviceState>
-                {
-                    new DeviceStateBuilder()
-                        .WithValueDefault("Off")
-                        .Build(name: "On/Off"),
-                }
-        };
-
-        device.Actions = new List<DeviceAction>
-        {
-
-            new DeviceAction
+        return new DeviceBuilder(name)
+            .WithState(new DeviceStateBuilder()
+                .WithValueDefault("Off")
+                .Build(name: "On/Off"))
+            .WithAction("Turn On", (device) =>
             {
-                Name = "Turn On",
-                Device = device,
-                Action = (device) =>
+                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
+                if (state != null)
                 {
-                    var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
-                    if (state != null)
-                    {
-                        state.Value = "On";
-                    }
+                    state.Value = "On";
                 }
-            },
-            new DeviceAction
+            })
+            .WithAction("Turn Off", (device) =>
             {
-                Name = "Turn Off",
-                Device = device,
-                Action = (device) =>
+                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
+                if (state != null)
                 {
-                    var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
-                    if (state != null)
-                    {
-                        state.Value = "Off";
-                    }
+                    state.Value = "Off";
                 }
-            }
-        };
-
-        return device;
+            })
+            .Build();
     }
 }
