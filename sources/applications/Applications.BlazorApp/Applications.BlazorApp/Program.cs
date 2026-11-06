@@ -1,5 +1,7 @@
 using HomeNet.AspireServiceDefaults;
 using HomeNet.Cores.Devices;
+
+using MudBlazor.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +12,7 @@ builder.Services
 
 builder.AddServiceDefaults();
 builder.Services.AddSingleton<DeviceManager>();
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
