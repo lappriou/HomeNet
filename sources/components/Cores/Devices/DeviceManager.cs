@@ -29,28 +29,10 @@ public class DeviceManager
     private Device BuildDeviceLight(string name)
     {
         return new DeviceBuilder(name)
-            .WithState(new DeviceStateBuilder()
-                .WithValueDefault("Off")
-                .Build(name: "On/Off"))
+            .WithOnOff()
             .WithState(new DeviceStateBuilder()
                 .WithValueDefault("0%")
                 .Build(name: "Brightness"))
-            .WithAction("Turn On", (device) =>
-            {
-                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
-                if (state != null)
-                {
-                    state.Value = "On";
-                }
-            })
-            .WithAction("Turn Off", (device) =>
-            {
-                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
-                if (state != null)
-                {
-                    state.Value = "Off";
-                }
-            })
             .WithAction<SetBrightnessParameters>("Set brightness", (device, parameters) =>
             {
                 if (parameters.Percentage is < 0 or > 100)

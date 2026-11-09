@@ -55,6 +55,31 @@ internal class DeviceBuilder
         return this;
     }
 
+    public DeviceBuilder WithOnOff()
+    {
+        this.WithState(new DeviceStateBuilder()
+                .WithValueDefault("Off")
+                .Build(name: "On/Off"))
+            .WithAction("Turn On", (device) =>
+            {
+                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
+                if (state != null)
+                {
+                    state.Value = "On";
+                }
+            })
+            .WithAction("Turn Off", (device) =>
+            {
+                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
+                if (state != null)
+                {
+                    state.Value = "Off";
+                }
+            });
+
+        return this;
+    }
+
     public Device Build()
     {
         Device.States = States;
