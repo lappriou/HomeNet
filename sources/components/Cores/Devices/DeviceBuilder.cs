@@ -60,20 +60,12 @@ internal class DeviceBuilder
         this.WithState(new DeviceStateBuilder()
                 .WithValueDefault("Off")
                 .Build(name: "On/Off"))
-            .WithAction("Turn On", (device) =>
+            .WithAction("Toggle", (device) =>
             {
                 var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
                 if (state != null)
                 {
-                    state.Value = "On";
-                }
-            })
-            .WithAction("Turn Off", (device) =>
-            {
-                var state = device.States?.FirstOrDefault(x => x.Name == "On/Off");
-                if (state != null)
-                {
-                    state.Value = "Off";
+                    state.Value = (string?)state.Value == "On" ? "Off" : "On";
                 }
             });
 
