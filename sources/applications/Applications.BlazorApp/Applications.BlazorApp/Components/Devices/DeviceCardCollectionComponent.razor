@@ -2,14 +2,9 @@
 
 <section class="devices-section" aria-labelledby="devices-heading">
     <div class="section-heading">
-        <div>
-            <p class="section-eyebrow">VOTRE ESPACE</p>
-            <h2 id="devices-heading">Vos appareils</h2>
-            <p class="section-description">Consultez leur état et accédez à leurs commandes.</p>
-        </div>
         <span class="device-count">
             @DeviceManager.Devices.Count
-            <span>@(DeviceManager.Devices.Count == 1 ? "appareil" : "appareils")</span>
+            <span>@(DeviceManager.Devices.Count == 1 ? "device" : "devices")</span>
         </span>
     </div>
 
@@ -17,8 +12,7 @@
     {
         <div class="empty-state">
             <span class="empty-state-icon"><MudIcon Icon="@Icons.Material.Filled.DevicesOther" /></span>
-            <h3>Aucun appareil pour le moment</h3>
-            <p>Les appareils ajoutés à votre espace apparaîtront ici.</p>
+            <h3>No devices at this time</h3>
         </div>
     }
     else
